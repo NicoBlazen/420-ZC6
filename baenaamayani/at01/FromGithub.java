@@ -1,1 +1,4 @@
-public static
+public static class FromGithub(){
+
+
+}
