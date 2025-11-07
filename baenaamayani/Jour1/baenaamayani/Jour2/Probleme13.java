@@ -5,28 +5,42 @@ import java.util.Scanner;
 public class Probleme13 {
 
     private static Scanner lectureClavier = new Scanner(System.in);
+
     public static void main(String[] args) {
-        double dTemp = 0;
-        String sConversion;
+        
+        double dTemperature = lireTemperature();
+        String sConversion = lireConversion();
+        double dResultat = convertirTemperature(dTemperature, sConversion);
 
-
-        System.out.print("Entrer une température :");
-        dTemp = lectureClavier.nextDouble();
-        lectureClavier.nextLine(); // problème avec juste un nextline qui fait apparaitre le header deux fois
-        do{
-            System.out.print("Vers celsius ou vers fahrenheit :");
-            sConversion = lectureClavier.nextLine();
-        } while(sConversion.toLowerCase().equals("f") == false && sConversion.toLowerCase().equals("c") == false);
-
-        System.out.println("Température : " +
-            (
-                sConversion.toLowerCase().equals("f") ?
-                (dTemp - 32) * 5 / 9:
-                dTemp * 9 / 5 + 32
-            )
-            + "°" + sConversion.toUpperCase()
-        );
+        afficherResultat(dResultat, sConversion);
 
         lectureClavier.close();
+    }
+
+    public static double lireTemperature() {
+        System.out.print("Entrer une température : ");
+        return lectureClavier.nextDouble();
+    }
+
+    public static String lireConversion() {
+        lectureClavier.nextLine();
+        String sConversion;
+        do {
+            System.out.print("Vers Celsius (C) ou vers Fahrenheit (F) ? : ");
+            sConversion = lectureClavier.nextLine().trim().toLowerCase();
+        } while (!sConversion.equals("c") && !sConversion.equals("f"));
+        return sConversion;
+    }
+
+    public static double convertirTemperature(double dTemperature, String sConversion) {
+        if (sConversion.equals("f")) {
+            return (dTemperature - 32) * 5 / 9;
+        } else {
+            return dTemperature * 9 / 5 + 32;
+        }
+    }
+
+    public static void afficherResultat(double dTemperature, String sConversion) {
+        System.out.println("Température : " + dTemperature + "°" + sConversion.toUpperCase());
     }
 }

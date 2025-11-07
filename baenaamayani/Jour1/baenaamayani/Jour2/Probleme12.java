@@ -6,20 +6,51 @@ public class Probleme12 {
 
     private static Scanner lectureClavier = new Scanner(System.in);
 
-    static int sommeMinMax(int min, int max){
-        int somme = 0;
-        for(int i = min; i <= max; i++){
-            somme += i;
-        }
+    public static void main(String[] args) {
 
-        return somme;
+        int iMin = lireNombre("Entrer un minimum : ");
+
+        int iMax = lireMaximumValide(iMin);
+
+        int iSomme = sommeMinMax(iMin, iMax);
+
+        afficherSommeDetail(iMin, iMax, iSomme);
+
+        lectureClavier.close();
     }
 
-    public static void main(String[] args) {
-        int iMin, iMax;
-        System.out.print("Entrer un minimum >> "); iMin = lectureClavier.nextInt();
-        System.out.print("Entrer un maximum >> "); iMax = lectureClavier.nextInt();
-        System.out.println("Somme de tout: " + sommeMinMax(iMin,iMax));
-        lectureClavier.close();
+    public static int lireNombre(String sMessage) {
+        System.out.print(sMessage);
+        return lectureClavier.nextInt();
+    }
+
+    public static int lireMaximumValide(int iMin) {
+        int iMax;
+        do {
+            iMax = lireNombre("Entrer un maximum : ");
+            if (iMax <= iMin) {
+                System.out.println("Le maximum doit être supérieur au minimum. Réessayez.");
+            }
+        } while (iMax <= iMin);
+        return iMax;
+    }
+
+    public static int sommeMinMax(int iMin, int iMax) {
+        int iSomme = 0;
+        for (int i = iMin; i <= iMax; i++) {
+            iSomme += i;
+        }
+        return iSomme;
+    }
+
+    public static void afficherSommeDetail(int iMin, int iMax, int iSomme) {
+        System.out.print("Somme : ");
+        for (int i = iMin; i <= iMax; i++) {
+            System.out.print(i);
+            if (i < iMax) {
+                System.out.print(" + ");
+            }
+        }
+        System.out.println(" = " + iSomme);
     }
 }

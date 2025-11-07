@@ -1,21 +1,33 @@
 package baenaamayani.Jour3;
 
-import java.util.Scanner;
 
 public class Probleme1 {
 
-    private static Scanner lectureClavier = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-    
-        lectureClavier.close();
+        String[] monTableau = creerTableau();
+        
+        afficherTableau(monTableau);
+
     }
 
-    public static String afficherTableau(){
+    public static String[] creerTableau(){
         String[] sTableau = new String[5];
 
-        for
+        sTableau[0] = "Bonjour";
+        sTableau[1] = "tout";
+        sTableau[2] = "le";
+        sTableau[3] = "monde";
+        sTableau[4] = "!";
+        return sTableau;
     }
 
+    public static void afficherTableau(String[] tableau){
+        System.out.println("Voici le tableau :");
+        for (int i = 0; i < tableau.length; i++) {
+            System.out.println(tableau[i]);
+
+        }
+    }
 }

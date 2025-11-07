@@ -8,30 +8,35 @@ public class Probleme8 {
     private static Scanner lectureClavier = new Scanner(System.in);
 
     public static void main(String[] args) {
-
         demanderMot();
         lectureClavier.close();
     }
 
-    public static void demanderMot(){
-        ArrayList<String> mots = new ArrayList<String>();
-        boolean arret = false;
+    public static void demanderMot() {
+        ArrayList<String> lMots = new ArrayList<String>();
+        boolean bArret = false;
+
         do {
             System.out.print("Entrer un mot. Le mot 'stop' arrêtera votre saisie: ");
-            String mot = lectureClavier.nextLine().toLowerCase();
-            if(mot.equals("stop")){
-                arret = true;
+            String sMot = lectureClavier.nextLine().toLowerCase();
+
+            if (sMot.equals("stop")) {
+                bArret = true;
+            } else {
+                lMots.add(sMot);
             }
-            else mots.add(mot);
-        } while (!arret);
+        } while (!bArret);
 
-        mots.sort(null);
-        String premier = mots.getFirst();
-        String dernier = mots.getLast();
+        if (!lMots.isEmpty()) {
+            lMots.sort(null);
 
-        System.out.println("Premier mot en ordre alphabétique :" + mots.getFirst());
-        System.out.println("Dernier mot en ordre alphabétique :" + mots.getLast());
+            String sPremier = lMots.get(0); 
+            String sDernier = lMots.get(lMots.size() - 1); 
+
+            System.out.println("Premier mot en ordre alphabétique : " + sPremier);
+            System.out.println("Dernier mot en ordre alphabétique : " + sDernier);
+        } else {
+            System.out.println("Aucun mot n'a été saisi.");
+        }
     }
-
-
 }
